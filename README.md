@@ -22,4 +22,6 @@ My solution to the tasks shared InMail for the Andela opportunity. Answers to th
 3.	I would have a background job which runs and stores the distance between every city beforehand. Such that when the GetDistance is required, my data storage would 		be queried instead of the API. This would prove cost effective in the long run since the API call would only ever occur once for any two cities.
 4.	Putting the code block in a try catch would solve this. Also since the background job exists, it would keep retrying the GetDistance for each city.
 5.	I would pass an argument for Sort Parameter. 
-6.	Questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in GetEventsJob
+
+### Note
+Questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in GetEventsJob
