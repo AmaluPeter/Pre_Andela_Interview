@@ -24,4 +24,4 @@ My solution to the tasks shared InMail for the Andela opportunity. Answers to th
 5.	I would pass an argument for Sort Parameter. 
 
 ### Note
-Questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in GetEventsJob
+Question 1 is implemented in GetEventsInCity(), while questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in GetEventsJob()
