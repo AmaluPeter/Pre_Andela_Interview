@@ -24,4 +24,5 @@ My solution to the tasks shared InMail for the Andela opportunity. Answers to th
 5.	I would pass an argument for Sort Parameter. 
 
 ### Note
-Question 1 is implemented in GetEventsInCity(), while questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in ComputeCityDistanceJob()
+1. Question 1 is implemented in GetEventsInCity(), while questions 2 & 6 are implemented together in GetEventsByParameter(), while questions 3 & 4 are implemented together in ComputeCityDistance()
+2. In a case where ComputeCityDistance exists, GetComputedCityDistance will be used to get distance instead of making API calls. This will increase speed and reduce cost greatly.
