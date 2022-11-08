@@ -22,14 +22,11 @@ namespace CustomCollection.Tests
         public string City { get; set; }
     }
 
-    //create a dictionary/database/dataset to hold city_pairs and distance
-    public static class DataStorage
-    {
-        public static Dictionary<string, int> city_pairs { get; set; }
-    }
-
     public class Solution
     {
+        //dictionary/database/dataset to hold city_pairs and distance
+        public static Dictionary<string, int> city_pairs = new Dictionary<string, int>();
+        
         static void Main(string[] args)
         {
             var events = new List<Event>{
@@ -45,9 +42,10 @@ namespace CustomCollection.Tests
              };
             var customer = new Customer { Name = "John Smith", City = "New York" };
             //Question 1
-            GetEventsInCity(customer, events);
+            //GetEventsInCity(customer, events);
             //Question 2
-            GetEventsByParameter(customer, events);
+            //GetEventsByParameter(customer, events);
+            ComputeCityDistance(events);
             Console.ReadLine();
         }
 
@@ -138,7 +136,7 @@ namespace CustomCollection.Tests
 
         static void ComputeCityDistance(List<Event> events)
         {
-
+           // Dictionary<string, int> city_pairs = new Dictionary<string, int>();
             //get all distinct cities
             var cities = events.Select(x => x.City).Distinct().ToList();
    
@@ -150,12 +148,18 @@ namespace CustomCollection.Tests
                     string city2 = cities[j];
                     //compare cities and concat in a sorted order to avoid duplicated cities e.g CaliforniaTexas and TexasCalifornia
                     string cityConcat = string.Compare(city1, city2, StringComparison.Ordinal) > 0 ? city1 + city2 : city2 + city1;
-                    if (!DataStorage.city_pairs.ContainsKey(cityConcat))
+
+                    //DataStorage.city_pairs.Add(cityConcat, GetDistance(city1, city2));
+                    //city_pairs.Add(cityConcat,GetDistance(city1,city2));
+                    if (!city_pairs.ContainsKey(cityConcat))
                     {
                         try
                         {
                             //add city_pair and distance to dictionary
-                            DataStorage.city_pairs.Add(cityConcat,GetDistance(city1,city2));
+                            //DataStorage.city_pairs.Add(cityConcat,GetDistance(city1,city2));
+                            int distance = GetDistance(city1, city2);
+                            Console.WriteLine("key: "+cityConcat+", distance: "+distance);
+                            city_pairs.Add(cityConcat, distance);
                         }
                         catch (Exception e)
                         {
@@ -169,12 +173,12 @@ namespace CustomCollection.Tests
         static int GetComputedCityDistance(string city1, string city2)
         {
             string cityConcat = string.Compare(city1, city2, StringComparison.Ordinal) > 0 ? city1 + city2 : city2 + city1;
-            if (DataStorage.city_pairs.ContainsKey(cityConcat))
-                return DataStorage.city_pairs[cityConcat];
+            if (city_pairs.ContainsKey(cityConcat))
+                return city_pairs[cityConcat];
             else
             {
                 int distance= GetDistance(city1, city2);
-                DataStorage.city_pairs.Add(cityConcat, distance);
+                city_pairs.Add(cityConcat, distance);
                 return distance;
             }
         }
